@@ -2,12 +2,13 @@ from flask import Flask, request, jsonify
 import numpy as np
 import tensorflow as tf
 import joblib
+import os
 
 app = Flask(__name__)
 
 # Load the model and scaler
-model = tf.keras.models.load_model('.\\NutrientLevel.h5')
-scaler = joblib.load('.\scaler.pkl')
+model = tf.keras.models.load_model(os.path.join('.', 'NutrientLevel.h5'))
+scaler = joblib.load(os.path.join('.', 'scaler.pkl'))
 
 # Define the result labels
 pH = [None, 'Acidic', 'Slightly Acidic', 'Neutral', 'Slightly Alkaline', 'Alkaline']
